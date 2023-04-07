@@ -9,10 +9,8 @@
     <div class="grid grid-cols-3 gap-3">
         {% for item in items %}
         <div>
-            <a href="">
+            <a href="{% url 'single-item' item.id %}">
                 <div>
-                    <!-- <h1 class="text-lg font-bold">{{ item.name }}</h1>
-                    <p>{{ item.description }}</p> -->
                     <img src="{{ item.item_image.url }}" class="rounded-t-xl">
                 </div>
                 <div class="p-6 bg-white rounded-b-xl">
