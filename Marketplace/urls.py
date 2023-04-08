@@ -8,6 +8,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('item.urls')),
     path('core/', include('core.urls')),
+    path('users/', include('users.urls')),
 ]
 
 #creating url for our static files
