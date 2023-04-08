@@ -2,6 +2,21 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
+# class LoginForm(AuthenticationForm):
+#     class Meta:
+#         model = User
+#     username = forms.CharField(widget=forms.TextInput(attrs={
+#         'placeholder' : '@samio',
+#         'class' : 'text-sm w-full py-2 px-6 rounded-lg'
+#     }))
+
+#     password = forms.CharField(widget=forms.TextInput(attrs={
+#         'placeholder' : '•••••••••••',
+#         'class' : 'text-sm w-full py-2 px-6 rounded-lg'
+#     }))
+
+
+
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = User
@@ -29,10 +44,13 @@ class CustomUserCreationForm(UserCreationForm):
         'placeholder' : '•••••••••••',
         'class' : 'text-sm w-full py-2 px-6 rounded-lg'
     }))
+
     password2 = forms.CharField(widget=forms.TextInput(attrs={
         'placeholder' : '•••••••••••',
         'class' : 'text-sm w-full py-2 px-6 rounded-lg'
     }))
+
+
 
 
 
