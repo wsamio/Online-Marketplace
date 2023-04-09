@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Category, Item
 from .forms import CreateItemForm
 from django.contrib.auth.decorators import login_required
@@ -26,10 +26,12 @@ def createItem(request):
     form = CreateItemForm()
 
     if request.method == 'POST':
-        form = CreateItemForm(request.POST)
+        form = CreateItemForm(request.POST, request.FILES)
         item = form.save(commit=False)
         item.created_by = request.user
         item.save()
+
+        return redirect('single-item', pk=item.id)
 
     context = {'form' : form}
     return render(request, 'item/create-item.html', context)
