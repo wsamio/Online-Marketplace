@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Category, Item
 from .forms import CreateItemForm
 from django.contrib.auth.decorators import login_required
-
+from .utils import searchItem
 def allItems(request):
     
     items = Item.objects.filter(is_sold=False)
@@ -57,9 +57,9 @@ def editItem(request, pk):
 
 
 def browseItem(request):
-    items = Item.objects.filter(is_sold=False)
+    items, search_query = searchItem(request)
     
-    context = {'items' : items}
+    context = {'items' : items, 'search_query' : search_query}
     return render(request, 'item/browse.html', context)
 
 

@@ -7,9 +7,12 @@
 
 <div class="pb-6 grid grid-cols-4 gap-4">
     <div class="col-span-1">
-        search bar
+        <form method="GET" action="">
+            <input name="search_query" class="w-full py-3 px-6 border rounded-lg" type="text" value="{{ search_query }}" placeholder="Find whatever...">
+            <input type="submit" value="Search" class="inline-block mt-2 rounded-lg border border-gray-300 bg-white px-4 py-2 text-center text-sm font-medium text-gray-700 shadow-sm transition-all hover:bg-gray-100 focus:ring focus:ring-gray-100 disabled:cursor-not-allowed disabled:border-gray-100 disabled:bg-gray-50 disabled:text-gray-400"> 
+        </form>
     </div>
-    <div class="col-span-3 bg-gray-200">
+    <div class="col-span-3 bg-gray-200 rounded-xl">
         <div class="grid grid-cols-3 gap-3">
             
             {% for item in items %}
@@ -27,6 +30,7 @@
             {% endfor %}
         
         </div>
+        <br>
     </div>
 </div>
 
