@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from .forms import CustomUserCreationForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
+from item.models import Item
 
 def registerUser(request):
 
@@ -47,3 +48,13 @@ def loginUser(request):
 def logoutUser(request):
     logout(request)
     return redirect('all-items')
+
+@login_required(login_url='login')
+def userDash(request):
+    owner = request.user
+    Sold = Item.objects.filter(is_sold=True, created_by=owner)
+    Unsold = Item.objects.filter(is_sold=False, created_by=owner)
+
+    context = {'Sold' : Sold, 'Unsold' : Unsold}
+
+    return render(request, 'users/dashboard.html', context)

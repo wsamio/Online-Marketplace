@@ -20,7 +20,7 @@
         <a href="" class="px-3 py-2 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">Sign up</a>
         <a href="" class="px-3 py-2 text-sm font-semibold bg-gray-500 text-white rounded-xl hover:bg-gray-700">Login</a> -->
         {% if request.user.is_authenticated %}
-        <a href="" class="text-base font-semibold hover:text-gray-500">Dashboard</a>
+        <a href="{% url 'dash' %}" class="text-base font-semibold hover:text-gray-500">Dashboard</a>
         <a href="" class="rounded-lg border border-blue-500 bg-blue-500 px-4 py-2 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-blue-700 hover:bg-blue-700 focus:ring focus:ring-red-200 disabled:cursor-not-allowed disabled:border-red-300 disabled:bg-red-300">Inbox</a>
         <a href="{% url 'logout' %}" class="rounded-lg border border-gray-300 bg-white px-4 py-2 text-center text-sm font-medium text-gray-700 shadow-sm transition-all hover:bg-gray-100 focus:ring focus:ring-gray-100 disabled:cursor-not-allowed disabled:border-gray-100 disabled:bg-gray-50 disabled:text-gray-400">Logout</a>
         {% else %}
