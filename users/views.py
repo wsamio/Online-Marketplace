@@ -4,16 +4,21 @@ from .forms import CustomUserCreationForm
 from django.contrib.auth import login, authenticate
 
 def registerUser(request):
+
+    if request.user.is_authenticated:
+        return redirect('all-items')
+
     # creating the instance of the form
     form = CustomUserCreationForm()
 
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
-        user = form.save(commit=False)
-        user.username = user.username.lower()
-        user.save()
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.username = user.username.lower()
+            user.save()
 
-        return redirect('all-items')
+            return redirect('login')
 
     context = {'form' : form}
     return render(request, 'users/register.html', context)
