@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<div class="grid grid-cols-5 gap-6">
+<!-- <div class="grid grid-cols-5 gap-6">
     <div class="col-span-2">
         <img src="{{ item.item_image.url }}" class="rounded-xl">
     </div>
@@ -17,12 +17,48 @@
             {{ item.description|linebreaksbr }}
         </p>
 
-        <!-- <a href="" class="inline-block mt-6 px-3 py-2 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">Contact seller</a> -->
         <a href="" class="inline-block mt-6 rounded-lg border border-blue-500 bg-blue-500 px-4 py-2 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-blue-700 hover:bg-blue-700 focus:ring focus:ring-red-200 disabled:cursor-not-allowed disabled:border-red-300 disabled:bg-red-300">Contact seller</a>
-        <!-- <a href="" class="rounded-lg border border-gray-300 bg-white px-4 py-2 text-center text-sm font-medium text-gray-700 shadow-sm transition-all hover:bg-gray-100 focus:ring focus:ring-gray-100 disabled:cursor-not-allowed disabled:border-gray-100 disabled:bg-gray-50 disabled:text-gray-400">ontact seller</a> -->
 
     </div>
+    <div class="col-span-1">
+        aljdsflk
+    </div>
+</div> -->
+
+<div class="grid grid-cols-5 gap-6">
+    <div class="col-span-2">
+        <img src="{{ item.item_image.url }}" class="rounded-xl">
+    </div>
+    <div class="col-span-3 p-6 bg-gray-100 rounded-xl">
+        <div class="grid grid-cols-4 gap-6">
+            <div class="col-span-2">
+                <h1 class="mb-6 text-3xl">{{ item.title }}</h1>
+                <p class="text-gray-500 text-base"><strong>Price: </strong>${{ item.price }}</p>
+                <p class="text-gray-500 text-base"><strong>Seller: </strong>@{{ item.created_by.username }}</p>
+                <p class="text-item-700 text-base">
+                    <strong class="text-gray-500 text-base">Description</strong>
+                    <br>
+                    {{ item.description|linebreaksbr }}
+                </p>
+                <a href="" class="inline-block mt-6 rounded-lg border border-blue-500 bg-blue-500 px-4 py-2 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-blue-700 hover:bg-blue-700 focus:ring focus:ring-red-200 disabled:cursor-not-allowed disabled:border-red-300 disabled:bg-red-300">Contact seller</a>
+            </div>
+            {% if request.user == item.created_by %}
+            <div class="col-span-2">
+                <div class="mt-6 p-6 bg-white rounded-lg">
+                    <p>If you're seeing this, you are the owner of this item!</p>
+                    <br>
+                    <p>Feel free to edit or delete your item.</p>
+                    <hr>
+                    <a href="{% url 'edit-item' item.id %}" class="rounded-lg border mt-7 border-gray-300 bg-white px-4 py-2 text-center text-sm font-medium text-gray-700 shadow-sm transition-all hover:bg-gray-100 focus:ring focus:ring-gray-100 disabled:cursor-not-allowed disabled:border-gray-100 disabled:bg-gray-50 disabled:text-gray-400">Edit</a>
+                    <a href="{% url 'delete-item' item.id %}" class="inline-block mt-7 rounded-lg border border-red-500 bg-red-500 px-4 py-2 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-red-700 hover:bg-red-700 focus:ring focus:ring-red-200 disabled:cursor-not-allowed disabled:border-red-300 disabled:bg-red-300">Delete Item</a>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
 </div>
+
+
 
 <div class="mt-6 px-6 py-12 bg-gray-200 rounded-xl">
     <h2 class="mb-12 text-2xl text-center">Related Items</h2>

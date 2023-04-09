@@ -35,3 +35,24 @@ def createItem(request):
 
     context = {'form' : form}
     return render(request, 'item/create-item.html', context)
+
+@login_required(login_url='login')
+def deleteItem(request, pk):
+    item = Item.objects.get(id=pk)
+    item.delete()
+    return redirect('all-items')
+
+
+def editItem(request, pk):
+    item = Item.objects.get(id=pk)
+    form = CreateItemForm(instance=item)
+    if request.method == 'POST':
+        form = CreateItemForm(request.POST, request.FILES, instance=item)
+        form.save()
+
+        return redirect('single-item', pk=item.id)
+
+    context = {'form' : form}
+    return render(request, 'item/create-item.html', context)
+
+
