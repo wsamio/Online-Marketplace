@@ -56,3 +56,10 @@ def editItem(request, pk):
     return render(request, 'item/create-item.html', context)
 
 
+def browseItem(request):
+    items = Item.objects.filter(is_sold=False)
+    
+    context = {'items' : items}
+    return render(request, 'item/browse.html', context)
+
+
