@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from .forms import CustomUserCreationForm
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 
 def registerUser(request):
 
@@ -43,3 +43,6 @@ def loginUser(request):
     return render(request, 'users/login.html')
 
 
+def logoutUser(request):
+    logout(request)
+    return redirect('all-items')
