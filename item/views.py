@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from .models import Category, Item
+from .forms import CreateItemForm
+from django.contrib.auth.decorators import login_required
 
 def allItems(request):
     
@@ -17,3 +19,17 @@ def singleItem(request, pk):
 
 
     return render(request, 'item/single-item.html', context)
+
+
+@login_required(login_url='login')
+def createItem(request):
+    form = CreateItemForm()
+
+    if request.method == 'POST':
+        form = CreateItemForm(request.POST)
+        item = form.save(commit=False)
+        item.created_by = request.user
+        item.save()
+
+    context = {'form' : form}
+    return render(request, 'item/create-item.html', context)
